@@ -1,8 +1,8 @@
 plugins {
     java
-    id("org.springframework.boot") version "3.3.5"
     id("io.spring.dependency-management") version "1.1.6"
-    id("io.freefair.lombok") version "8.0.1" // Lombok plugin for automatic configuration
+    id("io.freefair.lombok") version "8.0.1"
+    id("org.springframework.boot") version "3.3.6" // Lombok plugin for automatic configuration
 }
 
 group = "guru.springframework"
@@ -30,6 +30,7 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
 }
 
 dependencyManagement {

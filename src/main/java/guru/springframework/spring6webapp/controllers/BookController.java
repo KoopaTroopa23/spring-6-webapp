@@ -1,11 +1,19 @@
 package guru.springframework.spring6webapp.controllers;
 
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import guru.springframework.spring6webapp.services.BookService;
+import guru.springframework.spring6webapp.domain.Book;
 
-@Controller
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/v1/books")
+@Tag(name = "Book Controller", description = "API for managing books")
 public class BookController {
 
     private final BookService bookService;
@@ -14,9 +22,9 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @RequestMapping("/books")
-    public String getBooks(Model model) {
-        model.addAttribute("books", bookService.findAll());
-        return "books";
+    @GetMapping
+    @Operation(summary = "Get all books", description = "Returns a list of all books")
+    public List<Book> getBooks() {
+        return (List<Book>) bookService.findAll();
     }
 }
